@@ -5,6 +5,10 @@ import Login from './pages/Login/Login'
 import { AppContext } from './contexts/app.context'
 import HomeLayout from './layouts/HomeLayout'
 import Home from './pages/Home/Home'
+import Class from './pages/Class/Class'
+import Extracurricular from './pages/Extracurricular/Extracurricular'
+import New from './pages/New/New'
+import Intro from './pages/Intro/Intro'
 
 function ProtecedRoute() {
   const { isAuthenticated } = React.useContext(AppContext)
@@ -41,6 +45,38 @@ const useRouteElements = () => {
           element: (
             <HomeLayout>
               <Home />
+            </HomeLayout>
+          )
+        },
+        {
+          path: '/intro',
+          element: (
+            <HomeLayout>
+              <Intro />
+            </HomeLayout>
+          )
+        },
+        {
+          path: '/class',
+          element: (
+            <HomeLayout>
+              <Class />
+            </HomeLayout>
+          )
+        },
+        {
+          path: '/extracurricular',
+          element: (
+            <HomeLayout>
+              <Extracurricular />
+            </HomeLayout>
+          )
+        },
+        {
+          path: '/new',
+          element: (
+            <HomeLayout>
+              <New />
             </HomeLayout>
           )
         },

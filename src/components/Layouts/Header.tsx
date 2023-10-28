@@ -1,6 +1,28 @@
 import { useState } from 'react'
+import { NavLink } from 'react-router-dom'
 import Logo from '~/assets/images/logo1.png'
-
+const contentMenu = [
+  {
+    path: '/',
+    title: 'Trang chủ'
+  },
+  {
+    path: '/intro',
+    title: 'Giới thiệu'
+  },
+  {
+    path: '/class',
+    title: 'Lớp học'
+  },
+  {
+    path: '/extracurricular',
+    title: 'Ngoại khoá'
+  },
+  {
+    path: '/new',
+    title: 'Tin tức'
+  }
+]
 const Header = () => {
   const [showMenu, setShowMenu] = useState<boolean>(false)
   return (
@@ -10,8 +32,10 @@ const Header = () => {
           <div className='w-[125px] h-[39px]'>
             <img src={Logo} alt='Logo' />
           </div>
-          <div className={` bg-[rgba(0,0,0,.8)] z-10 fixed top-0 left-0 w-full transition-all h-full ${showMenu ? "visible opacity-100" : "invisible opacity-0"}`}>
-          </div>
+          <div
+            className={` bg-[rgba(0,0,0,.8)] z-10 fixed top-0 left-0 w-full transition-all h-full ${showMenu ? 'visible opacity-100' : 'invisible opacity-0'
+              }`}
+          ></div>
           <div
             style={{ zIndex: 100 }}
             className={`z-100 px-[10px] py-5 fixed h-full w-[70%] bg-primary top-0 transition-all duration-300 ${showMenu ? 'right-0' : 'right-[-100%]'
@@ -41,6 +65,23 @@ const Header = () => {
               <img src={Logo} alt='Logo' />
             </div>
             <div className='w-full h-[1px] bg-gray-300 mt-4 mb-6'></div>
+            <div className='flex flex-col font-semibold text-white'>
+              {contentMenu.map((item, index) => (
+                <NavLink
+                  key={index}
+                  onClick={() => setShowMenu(false)}
+                  className={({ isActive, isPending }) =>
+                    [
+                      isPending ? 'pending' : 'mt-5 py-1 px-3',
+                      isActive ? 'text-[#ffcb08] ' : 'hover:bg-[#ffcb08] transition-all w-max rounded-2xl'
+                    ].join(' ')
+                  }
+                  to={item.path}
+                >
+                  {item.title}
+                </NavLink>
+              ))}
+            </div>
           </div>
           <button
             onClick={() => setShowMenu(true)}
