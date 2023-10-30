@@ -28,17 +28,39 @@ const Header = () => {
   return (
     <header>
       <div className='bg-transparent fixed w-full'>
-        <div className='max-w-[1465px] mx-auto px-[27px] py-[15px] flex justify-between'>
+        <div className='max-w-[1465px] lg:items-center mx-auto px-[27px] py-[15px] flex justify-between'>
           <div className='w-[125px] h-[39px]'>
             <img src={Logo} alt='Logo' />
           </div>
+          <div className='hidden lg:flex gap-x-3'>
+            {contentMenu.map((item, index) => (
+              <NavLink
+                key={index}
+                onClick={() => setShowMenu(false)}
+                className={({ isActive, isPending }) =>
+                  [
+                    isPending ? 'pending' : ' py-1 px-3  text-white font-semibold rounded-2xl',
+                    isActive ? 'bg-bgYellow ' : 'hover:bg-bgYellow  transition-all w-max rounded-2xl'
+                  ].join(' ')
+                }
+                to={item.path}
+              >
+                {item.title}
+              </NavLink>
+            ))}
+          </div>
+          <div className='hidden lg:flex text-white font-semibold gap-x-5'>
+            <button>Đăng nhập</button>
+            <button className='py-2 px-3 bg-bgYellow rounded-lg'>Kích hoạt tài khoản</button>
+
+          </div>
           <div
-            className={` bg-[rgba(0,0,0,.8)] z-10 fixed top-0 left-0 w-full transition-all h-full ${showMenu ? 'visible opacity-100' : 'invisible opacity-0'
+            className={` bg-[rgba(0,0,0,.8)] lg:hidden z-10 fixed top-0 left-0 w-full transition-all h-full ${showMenu ? 'visible opacity-100' : 'invisible opacity-0'
               }`}
           ></div>
           <div
             style={{ zIndex: 100 }}
-            className={`z-100 px-[10px] py-5 fixed h-full w-[70%] bg-primary top-0 transition-all duration-300 ${showMenu ? 'right-0' : 'right-[-100%]'
+            className={`z-100 lg:hidden px-[10px] py-5 fixed h-full w-[70%] bg-primary top-0 transition-all duration-300 ${showMenu ? 'right-0' : 'right-[-100%]'
               }`}
           >
             <button
@@ -85,7 +107,7 @@ const Header = () => {
           </div>
           <button
             onClick={() => setShowMenu(true)}
-            className=' rounded-full  bg-primary flex w-10 h-10 items-center justify-center'
+            className='lg:hidden rounded-full  bg-primary flex w-10 h-10 items-center justify-center'
           >
             <svg fill='none' height='20' viewBox='0 0 20 20' width='20' xmlns='http://www.w3.org/2000/svg'>
               <path
