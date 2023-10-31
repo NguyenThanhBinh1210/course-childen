@@ -26,8 +26,8 @@ const contentMenu = [
 const Header = () => {
   const [showMenu, setShowMenu] = useState<boolean>(false)
   return (
-    <header>
-      <div className='bg-transparent fixed w-full'>
+    <header className='bg-primary shadow-xl fixed w-full z-10'>
+      <div className=' w-full'>
         <div className='max-w-[1465px] lg:items-center mx-auto px-[27px] py-[15px] flex justify-between'>
           <div className='w-[125px] h-[39px]'>
             <img src={Logo} alt='Logo' />
